@@ -1,0 +1,37 @@
+# RELEASE
+service_release_name: "paasta-api-gateway-service"
+service_release_version: "1.0"
+
+# STEMCELL
+stemcell_os: "ubuntu-xenial"
+stemcell_version: "315.45"
+
+# VM_TYPE
+vm_type_minimal: "minimal"
+vm_type_default: "small"
+vm_type_medium: "medium"
+
+# NETWORK
+private_networks_name: "service_private"
+public_networks_name: "service_public"
+#private_nat_networks_name: "service_private"             # AWS의 경우, NATS Network Name
+
+# MARIA_DB
+mariadb_azs: [z5]
+mariadb_instances: 1
+mariadb_persistent_disk_type: "10GB"
+mariadb_port: "<MARIADB_PORT>"
+mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"
+mariadb_service_username: "<MARIADB_SERVICE_USERNAME>"
+mariadb_service_password: "<MARIADB_SERVICE_PASSWORD>"
+
+# SERVICE-BROKER
+broker_azs: [z5]
+broker_instances: 1
+broker_port: "<SERVICE_BROKER_PORT>"
+broker_logging_level_broker: "INFO"
+broker_logging_level_hibernate: "INFO"
+broker_dashboard_url: "<SERVICE_BROKER_DASHBOARD_URL>"
+broker_services_id: "<SERVICE_BROKER_SERVICES_GUID>"
+broker_services_plans_id: "<SERVICE_BROKER_SERVICES_PLANS_GUID>"
+
