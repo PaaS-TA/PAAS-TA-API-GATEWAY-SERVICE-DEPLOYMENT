@@ -1,37 +1,45 @@
 # RELEASE
-service_release_name: "paasta-api-gateway-service"
-service_release_version: "1.0"
+service_release_name: "paasta-api-gateway-service"                   # release name
+service_release_version: "1.0"                                       # release version
 
 # STEMCELL
-stemcell_os: "ubuntu-xenial"
-stemcell_version: "315.45"
+stemcell_os: "ubuntu-xenial"                                         # stemcell os
+stemcell_version: "315.36"                                           # stemcell version
 
 # VM_TYPE
-vm_type_minimal: "minimal"
-vm_type_default: "small"
-vm_type_medium: "medium"
+vm_type_default: "medium"                                            # vm type default
+vm_type_highmem: "small-highmem-16GB"                                # vm type highmemory
 
 # NETWORK
-private_networks_name: "service_private"
-public_networks_name: "service_public"
-#private_nat_networks_name: "service_private"             # AWS의 경우, NATS Network Name
+private_networks_name: "service_private"                             # private network name
+public_networks_name: "service_public"                               # public network name :: The public network name can only use "vip" or "service_public".
+#private_nat_networks_name: "service_private"                        # AWS의 경우, NATS Network Name
 
 # MARIA_DB
-mariadb_azs: [z5]
-mariadb_instances: 1
-mariadb_persistent_disk_type: "10GB"
-mariadb_port: "<MARIADB_PORT>"
-mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"
-mariadb_service_username: "<MARIADB_SERVICE_USERNAME>"
-mariadb_service_password: "<MARIADB_SERVICE_PASSWORD>"
+mariadb_azs: [z3]                                                    # mariadb : azs
+mariadb_instances: 1                                                 # mariadb : instances (1) 
+mariadb_persistent_disk_type: "10GB"                                 # mariadb : persistent_disk_type 
+mariadb_port: "<MARIADB_PORT>"                                       # mariadb : database port 
+mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"                   # mariadb : database admin password 
+mariadb_broker_username: "<MARIADB_BROKER_USERNAME>"                 # mariadb : service-broker-user id 
+mariadb_broker_password: "<MARIADB_BROKER_PASSWORD>"                 # mariadb : service-broker-user password 
 
 # SERVICE-BROKER
-broker_azs: [z5]
-broker_instances: 1
-broker_port: "<SERVICE_BROKER_PORT>"
-broker_logging_level_broker: "INFO"
-broker_logging_level_hibernate: "INFO"
-broker_dashboard_url: "<SERVICE_BROKER_DASHBOARD_URL>"
-broker_services_id: "<SERVICE_BROKER_SERVICES_GUID>"
-broker_services_plans_id: "<SERVICE_BROKER_SERVICES_PLANS_GUID>"
+broker_azs: [z3]                                                     # service-broker : azs
+broker_instances: 1                                                  # service-broker : instances (1)
+broker_port: "<SERVICE_BROKER_PORT>"                                 # service-broker : broker port
+broker_logging_level_broker: "INFO"                                  # service-broker : broker logging level
+broker_logging_level_hibernate: "INFO"                               # service-broker : hibernate logging level
+broker_services_id: "<SERVICE_BROKER_SERVICES_GUID>"                 # service-broker : service guid
+broker_services_plans_id: "<SERVICE_BROKER_SERVICES_PLANS_GUID>"     # service-broker : service plan id
+bosh_client_id: "<BOSH_CLIENT_ID>"                                   # service-broker : bosh client id
+bosh_client_secret: "<BOSH_CLIENT_SECRET>"                           # service-broker : bosh client secret
+bosh_url: "<BOSH_URL>"                                               # service-broker : bosh url (ex. https://00.000.0.0:25555)
+bosh_oauth_url: "<BOSH_OAUTH_URL>"                                   # service-broker : bosh oauth url (ex. https://00.000.0.0:8443)
 
+# API-GATEWAY
+api_gateway_azs: [z3]                                                # api-gateway : azs
+api_gateway_instances: 2                                             # api-gateway : instances (N)
+api_gateway_persistent_disk_type: "20GB"                             # api-gateway : persistent_disk_type
+api_gateway_public_ips: "<API_GATEWAY_PUBLIC_IPS>"                   # api-gateway : public ips (ex. ["00.00.00.00" , "11.11.11.11"]
+api_gateway_admin_password: "<API_GATEWAY_ADMIN_PASSWORD>"           # api-gateway : api- gateway admin password

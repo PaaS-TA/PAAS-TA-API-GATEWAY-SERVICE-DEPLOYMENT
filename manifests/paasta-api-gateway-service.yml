@@ -1,9 +1,9 @@
 ---
-name: ((deployment_name))                         # 서비스 배포이름(필수) 
+name: ((deployment_name)) 
 
 releases:
-- name: ((service_release_name))             # 서비스 릴리즈 이름(필수)
-  version: ((service_release_version))       # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+- name: ((service_release_name))
+  version: ((service_release_version))
 
 stemcells:
 - alias: default
@@ -11,10 +11,10 @@ stemcells:
   version: ((stemcell_version))
 
 update:
-  canaries: 1                            # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-600000        # canary 인스턴스가 수행하기 위한 대기 시간milliseconds (필수)
-  max_in_flight: 1                       # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 10000-600000         # non-canary 인스턴스가 수행하기 위한 대기 시간milliseconds (필수)
+  canaries: 1
+  canary_watch_time: 30000-600000
+  max_in_flight: 1
+  update_watch_time: 10000-600000
   serial: true
 
 instance_groups:
@@ -30,12 +30,12 @@ instance_groups:
   - name: mariadb
     release: ((service_release_name))
     properties:
-      port: ((mariadb_port))
-      admin:
-        password: ((mariadb_admin_password))
-      service:
-        username: ((mariadb_service_username))
-        password: ((mariadb_service_password))
+      database:
+        port: ((mariadb_port))
+        admin_password: ((mariadb_admin_password))
+        broker:
+          username: ((mariadb_broker_username))
+          password: ((mariadb_broker_password))
   update:
     max_in_flight: 1
 
@@ -50,16 +50,41 @@ instance_groups:
   - name: service-broker
     release: ((service_release_name))
     properties:
+      bosh:
+        client:
+          id: ((bosh_client_id))
+          secret: ((bosh_client_secret))
+        url: ((bosh_url))
+        oauth_url: ((bosh_oauth_url))
+        deployment_name: ((deployment_name))
       port: ((broker_port))
       logging:
         level_broker: ((broker_logging_level_broker))
         level_hibernate: ((broker_logging_level_hibernate))
-      dashboard:
-        url: ((broker_dashboard_url))
+      service:
+        admin_password: ((api_gateway_admin_password))
       services:
         id: ((broker_services_id))
         plans:
           id: ((broker_services_plans_id))
+  update:
+    max_in_flight: 1
+
+- name: api-gateway
+  azs: ((api_gateway_azs))
+  instances: ((api_gateway_instances))
+  persistent_disk_type: ((api_gateway_persistent_disk_type))
+  vm_type: ((vm_type_xlarge))
+  stemcell: default
+  networks:
+  - name: ((private_networks_name))
+  - name: ((public_networks_name))
+  jobs:
+  - name: api-gateway
+    release: ((service_release_name))
+    properties:
+      service:
+        admin_password: ((api_gateway_admin_password))
   update:
     max_in_flight: 1
 

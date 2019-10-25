@@ -9,4 +9,3 @@ bosh -e ${BOSH2_NAME} -n -d ${DEPLOYMENT_NAME} deploy --no-redact manifests/${DE
     -o manifests/ops-files/vsphere-network.yml \
     -l manifests/vars.yml \
     -v deployment_name=${DEPLOYMENT_NAME}
-
