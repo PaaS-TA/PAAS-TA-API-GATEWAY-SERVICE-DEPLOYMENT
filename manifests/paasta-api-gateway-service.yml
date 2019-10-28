@@ -74,7 +74,7 @@ instance_groups:
   azs: ((api_gateway_azs))
   instances: ((api_gateway_instances))
   persistent_disk_type: ((api_gateway_persistent_disk_type))
-  vm_type: ((vm_type_xlarge))
+  vm_type: ((vm_type_default))
   stemcell: default
   networks:
   - name: ((private_networks_name))
