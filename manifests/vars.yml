@@ -4,7 +4,7 @@ service_release_version: "1.0"                                       # release v
 
 # STEMCELL
 stemcell_os: "ubuntu-xenial"                                         # stemcell os
-stemcell_version: "315.36"                                           # stemcell version
+stemcell_version: "315.64"                                           # stemcell version
 
 # VM_TYPE
 vm_type_default: "medium"                                            # vm type default
@@ -19,20 +19,20 @@ public_networks_name: "service_public"                               # public ne
 mariadb_azs: [z3]                                                    # mariadb : azs
 mariadb_instances: 1                                                 # mariadb : instances (1) 
 mariadb_persistent_disk_type: "10GB"                                 # mariadb : persistent_disk_type 
-mariadb_port: "<MARIADB_PORT>"                                       # mariadb : database port 
-mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"                   # mariadb : database admin password 
-mariadb_broker_username: "<MARIADB_BROKER_USERNAME>"                 # mariadb : service-broker-user id 
-mariadb_broker_password: "<MARIADB_BROKER_PASSWORD>"                 # mariadb : service-broker-user password 
+mariadb_port: "<MARIADB_PORT>"                                       # mariadb : database port (e.g. 3306)
+mariadb_admin_password: "<MARIADB_ADMIN_PASSWORD>"                   # mariadb : database admin password (e.g. "paas-ta!admin")
+mariadb_broker_username: "<MARIADB_BROKER_USERNAME>"                 # mariadb : service-broker-user id (e.g. "apigateway")
+mariadb_broker_password: "<MARIADB_BROKER_PASSWORD>"                 # mariadb : service-broker-user password (e.g. "broker!admin")
 
 # SERVICE-BROKER
 broker_azs: [z3]                                                     # service-broker : azs
 broker_instances: 1                                                  # service-broker : instances (1)
-broker_port: "<SERVICE_BROKER_PORT>"                                 # service-broker : broker port
+broker_port: "<SERVICE_BROKER_PORT>"                                 # service-broker : broker port (e.g. "8080")
 broker_logging_level_broker: "INFO"                                  # service-broker : broker logging level
 broker_logging_level_hibernate: "INFO"                               # service-broker : hibernate logging level
-broker_services_id: "<SERVICE_BROKER_SERVICES_GUID>"                 # service-broker : service guid
-broker_services_plans_id: "<SERVICE_BROKER_SERVICES_PLANS_GUID>"     # service-broker : service plan id
-bosh_client_id: "<BOSH_CLIENT_ID>"                                   # service-broker : bosh client id
+broker_services_id: "<SERVICE_BROKER_SERVICES_GUID>"                 # service-broker : service guid (e.g. "8b78dfb6-1fb6-4586-b767-45b5f77e0d42")
+broker_services_plans_id: "<SERVICE_BROKER_SERVICES_PLANS_GUID>"     # service-broker : service plan id (e.g. "b5e33932-8f87-4712-9776-887bfb73c584")
+bosh_client_id: "<BOSH_CLIENT_ID>"                                   # service-broker : bosh client id 
 bosh_client_secret: "<BOSH_CLIENT_SECRET>"                           # service-broker : bosh client secret
 bosh_url: "<BOSH_URL>"                                               # service-broker : bosh url (ex. https://00.000.0.0:25555)
 bosh_oauth_url: "<BOSH_OAUTH_URL>"                                   # service-broker : bosh oauth url (ex. https://00.000.0.0:8443)
@@ -42,4 +42,4 @@ api_gateway_azs: [z3]                                                # api-gatew
 api_gateway_instances: 2                                             # api-gateway : instances (N)
 api_gateway_persistent_disk_type: "20GB"                             # api-gateway : persistent_disk_type
 api_gateway_public_ips: "<API_GATEWAY_PUBLIC_IPS>"                   # api-gateway : public ips (ex. ["00.00.00.00" , "11.11.11.11"]
-api_gateway_admin_password: "<API_GATEWAY_ADMIN_PASSWORD>"           # api-gateway : api- gateway admin password
+api_gateway_admin_password: "<API_GATEWAY_ADMIN_PASSWORD>"           # api-gateway : api-gateway admin password (e.g. "admin!Service")
