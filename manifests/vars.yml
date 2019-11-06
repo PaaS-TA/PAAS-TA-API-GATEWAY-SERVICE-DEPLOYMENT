@@ -42,4 +42,4 @@ api_gateway_azs: [z3]                                                # api-gatew
 api_gateway_instances: 2                                             # api-gateway : instances (N)
 api_gateway_persistent_disk_type: "20GB"                             # api-gateway : persistent_disk_type
 api_gateway_public_ips: "<API_GATEWAY_PUBLIC_IPS>"                   # api-gateway : public ips (ex. ["00.00.00.00" , "11.11.11.11"]
-api_gateway_admin_password: "<API_GATEWAY_ADMIN_PASSWORD>"           # api-gateway : api-gateway admin password (e.g. "admin!Service")
+api_gateway_admin_password: "<API_GATEWAY_ADMIN_PASSWORD>"           # api-gateway : api-gateway super admin password (e.g. "admin!Service")
